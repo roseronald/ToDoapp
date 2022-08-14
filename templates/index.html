@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h1>My ToDO....</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+              <div class="card border-success mb-3" width="100">
+                   <div class="card text-success text-success">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <form method="POST" class="p-3 shadow">
+                                        {% csrf_token %}
+                                         <div class="form-group">
+                                              <input type="text" name="name" placeholder="Task" class="form-control"><br>
+                                         </div>
+                                         <div class="form-group">
+                                            <input type="text" name="priority" placeholder="Priority" class="form-control"><br>
+                                         </div>
+                                        <div class="form-group">
+                                            <input type="date" name="date" placeholder="Date" class="form-control"><br>
+                                         </div>
+                                        <div class="form-group">
+                                             <button type="submit" name="btn" class="btn btn-success">submit</button>
+                                         </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+              </div>
+        </div>
+    <div class="col-md-6">
+            <h2>Task To be Complete</h2>
+            {%  for i in task1 %}
+              <div class="shadow card" width="100">
+                        <div class="card-body">
+                           <h4 class="card-title">Task-{{i.name}}</h4>
+                             <p class="card-text">Priority-{{i.priority}}<br></p>
+                            <p class="card-text">Date-{{i.date}}<br></p>
+
+                            <a href="{% url 'delete' i.id %}" class="btn btn-danger">Done</a>
+                             <a href="{% url 'update' i.id %}" class="btn btn-primary">Update</a>
+                        </div>
+              </div><br>
+                {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
